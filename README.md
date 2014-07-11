@@ -27,17 +27,17 @@ Examples
 
 `examples.cpp` contains
 
-    - An implementation of matrix multiplication `mul()` that takes two
-    `ndarray` objects, converts them to `cv::Mat`, multiplies them and returns
-    the result as an `ndarray`.
+- An implementation of matrix multiplication `mul()` that takes two
+  `ndarray` objects, converts them to `cv::Mat`, multiplies them and returns
+  the result as an `ndarray`.
 
-    - An image binarization function `binarize()` that takes an `ndarray`
-    containing a grayscale image and a threshold value, converts the image to
-    a `cv::Mat` and thresholds(binarizes) it. It then returns the result as
-    a `ndarray`.
+- An image binarization function `binarize()` that takes an `ndarray`
+  containing a grayscale image and a threshold value, converts the image to
+  a `cv::Mat` and thresholds(binarizes) it. It then returns the result as
+  a `ndarray`.
 
-    - An image display function `display(ndarray)` that just takes any image
-    as an `ndarray` object and displays it.
+- An image display function `display(ndarray)` that just takes any image
+  as an `ndarray` object and displays it.
 
 All of these functions are callable from Python.
 
