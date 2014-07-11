@@ -22,15 +22,30 @@ API
     - **Returns** a `PyObject*` that is the Python representation of an ndarray.
 
 
-Example
+Examples
 --------
 
-`matrmul.cpp` contains an implementation of matrix multiplication that is
-callable from Python. It takes two `ndarrays`, converts both to `cv::Mat` using
-`NDArrayConverter`, multiplies these two `Mat`s using `cv::Mat::operator*`,
-converts the result of multiplication back to an `ndarray` and returns this
-result to Python. The plumbing(passing of values to and from Python) 
-is handled by Boost::Python.
+`examples.cpp` contains
+
+    - An implementation of matrix multiplication `mul()` that takes two
+    `ndarray` objects, converts them to `cv::Mat`, multiplies them and returns
+    the result as an `ndarray`.
+
+    - An image binarization function `binarize()` that takes an `ndarray`
+    containing a grayscale image and a threshold value, converts the image to
+    a `cv::Mat` and thresholds(binarizes) it. It then returns the result as
+    a `ndarray`.
+
+    - An image display function `display(ndarray)` that just takes any image
+    as an `ndarray` object and displays it.
+
+All of these functions are callable from Python.
+
+The plumbing(passing of values to and from Python) is handled by
+Boost::Python.
+
+`test.py` contains some testcases that call the aforementioned C++ functions
+from Python.
 
 
 Building and testing
@@ -47,3 +62,4 @@ module to test matrix multiplication.
 
 [1]: http://www.boost.org/doc/libs/1_53_0/libs/python/doc/index.html
 [2]: http://www.numpy.org/
+
