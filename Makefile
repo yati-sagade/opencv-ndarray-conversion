@@ -6,7 +6,7 @@ BOOST_LIB = /usr/local/lib
 OPENCV_LIB = $$(pkg-config --libs opencv)
 OPENCV_INC = $$(pkg-config --cflags opencv)
 
-TARGET = matrmul
+TARGET = examples
 
 $(TARGET).so: $(TARGET).o conversion.o
 		g++ -shared -Wl,--export-dynamic \
