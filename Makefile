@@ -1,32 +1,37 @@
-PYTHON_VERSION = 2.7
-PYTHON_INCLUDE = /usr/include/python$(PYTHON_VERSION)
-
-BOOST_INC = /usr/local/include
-BOOST_LIB = /usr/local/lib
-OPENCV_LIB = $$(pkg-config --libs opencv)
-OPENCV_INC = $$(pkg-config --cflags opencv)
+CXX = g++
+CXXFLAGS = -g -Wall -std=c++11
+INCLUDES = -I/usr/local/include
+LDFLAGS = -L/usr/local/lib
+ARCH := $$(getconf LONG_BIT)
+CUDA_PATH = /opt/cuda
+CUDA_LDFLAGS = -L$(CUDA_PATH)/lib$(ARCH)
+CUDA_INCLUDES = -I$(CUDA_PATH)/include
+OPENCV_LDFLAGS = $(CUDA_LDFLAGS)
+OPENCV_LIBS = $$(pkg-config --libs opencv)
+OPENCV_INCLUDES = $$(pkg-config --cflags opencv) $(CUDA_INCLUDES)
+BOOST_LIBS = -lboost_python
+PYTHON_LIBS = $$(pkg-config --libs python2)
+PYTHON_INCLUDES = $$(pkg-config --cflags python2)
 
 TARGET = examples
 
+all: $(TARGET).so
+
 $(TARGET).so: $(TARGET).o conversion.o
-		g++ -shared -Wl,--export-dynamic \
-		$(TARGET).o conversion.o -L$(BOOST_LIB) -lboost_python -lboost_numpy \
-		$(OPENCV_LIB) \
-		-L/usr/lib/python$(PYTHON_VERSION)/config -lpython$(PYTHON_VERSION) \
-		-o $(TARGET).so
+	$(CXX) -shared  -Wl,--export-dynamic $(LDFLAGS) \
+	$(OPENCV_LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(PYTHON_LIBS) \
+	$(TARGET).o conversion.o -o $(TARGET).so
 
 $(TARGET).o: $(TARGET).cpp
-		g++ -std=c++11 -I$(PYTHON_INCLUDE) $(OPENCV_INC) -I$(BOOST_INC) -fPIC -c \
-		$(TARGET).cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OPENCV_INCLUDES) $(PYTHON_INCLUDES) \
+	-fPIC -c $(TARGET).cpp
 
 conversion.o: conversion.cpp conversion.h
-		g++ -std=c++11 -I$(PYTHON_INCLUDE) $(OPENCV_INC) -I$(BOOST_INC) -fPIC -c \
-		conversion.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OPENCV_INCLUDES) $(PYTHON_INCLUDES) \
+	-fPIC -c conversion.cpp
 
 clean:
-	rm -f $(TARGET).so $(TARGET).o conversion.o
+	rm -f *.o *.so
 
 test:
-	python -m test
-
-	
+	env python2 -m test
