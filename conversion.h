@@ -7,6 +7,9 @@
 #include <opencv2/core/core.hpp>
 #include "numpy/ndarrayobject.h"
 
+#define NUMPY_IMPORT_ARRAY_RETVAL
+
+
 static PyObject* opencv_error = 0;
 
 static int failmsg(const char *fmt, ...);

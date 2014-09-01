@@ -164,7 +164,7 @@ cv::Mat NDArrayConverter::toMat(const PyObject *o)
     const npy_intp* _sizes = PyArray_DIMS(o);
     const npy_intp* _strides = PyArray_STRIDES(o);
     bool transposed = false;
-    
+
     for(int i = 0; i < ndims; i++)
     {
         size[i] = (int)_sizes[i];
