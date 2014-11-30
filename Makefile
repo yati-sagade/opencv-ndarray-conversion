@@ -9,9 +9,14 @@ CUDA_INCLUDES = -I$(CUDA_PATH)/include
 OPENCV_LDFLAGS = $(CUDA_LDFLAGS)
 OPENCV_LIBS = $$(pkg-config --libs opencv)
 OPENCV_INCLUDES = $$(pkg-config --cflags opencv) $(CUDA_INCLUDES)
-BOOST_LIBS = -lboost_python
-PYTHON_LIBS = $$(pkg-config --libs python2)
-PYTHON_INCLUDES = $$(pkg-config --cflags python2)
+PYTHON_VER = 2
+ifeq ($(PYTHON_VER), 2)
+  BOOST_LIBS = -lboost_python
+else
+  BOOST_LIBS = -lboost_python$(PYTHON_VER)
+endif
+PYTHON_LIBS = $$(pkg-config --libs python$(PYTHON_VER))
+PYTHON_INCLUDES = $$(pkg-config --cflags python$(PYTHON_VER))
 
 TARGET = examples
 
@@ -34,4 +39,4 @@ clean:
 	rm -f *.o *.so
 
 test:
-	env python2 -m test
+	env python$(PYTHON_VER) -m test
