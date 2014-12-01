@@ -7,7 +7,7 @@ except ImportError:
     raise ImportError('Could not import the examples module. Did you run make?')
 
 
-class TestMatrMul(unittest.TestCase):
+class TestExamples(unittest.TestCase):
     '''
     Tests for the examples module.
 
