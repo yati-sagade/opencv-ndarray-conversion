@@ -56,10 +56,11 @@ After installing [Boost::Python][1] and [NumPy][2](maybe the devel package),
     $ make
     $ make test
 
-This will build an object file usable in other projects, `conversion.o` and
-run tests from `test.py`, which actually uses the compiled `examples.so` Python
-module to test matrix multiplication. `examples.so` is built from
-`examples.cpp`, which contains a few examples of using the converter.
+
+This builds and tests the project. Specifically, it builds the core converter
+in `conversion.o` and a set of examples in `examples.so`, which is a Python
+module containing a few examples of using the converter. `test.py` contains
+a test-suite to test (and demonstrate) the converter.
 
 [1]: http://www.boost.org/doc/libs/1_53_0/libs/python/doc/index.html
 [2]: http://www.numpy.org/
