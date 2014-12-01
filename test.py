@@ -1,10 +1,15 @@
 import unittest
-import examples
 import numpy as np
+
+try:
+    import examples
+except ImportError:
+    raise ImportError('Could not import the examples module. Did you run make?')
+
 
 class TestMatrMul(unittest.TestCase):
     '''
-    Tests for the sample matrix multiplication module.
+    Tests for the examples module.
 
     '''
     def test_vector_multiplication(self):
