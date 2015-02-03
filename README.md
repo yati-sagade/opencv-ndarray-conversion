@@ -68,6 +68,7 @@ a test-suite to test (and demonstrate) the converter.
 Building with CMake (Ubuntu)
 ---------------------
 After installing [Boost::Python][1] and [NumPy][2](maybe the devel package),
+
     $ mkdir build 
     $ cd build
     $ cmake ..
