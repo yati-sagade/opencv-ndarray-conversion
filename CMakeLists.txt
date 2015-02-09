@@ -23,3 +23,8 @@ target_link_libraries(examples ${Boost_LIBRARIES} ${PYTHON_LIBRARIES} ${OpenCV_L
 # don't prepend wrapper library name with lib
 set_target_properties(examples PROPERTIES PREFIX "" )
 
+if(WIN32)
+  set_target_properties(examples PROPERTIES SUFFIX ".pyd")
+elseif (APPLE)
+  set_target_properties(examples PROPERTIES SUFFIX ".so")
+endif()
