@@ -24,8 +24,8 @@ all: $(TARGET).so
 
 $(TARGET).so: $(TARGET).o conversion.o
 	$(CXX) -shared  -Wl,--export-dynamic $(LDFLAGS) \
-	$(OPENCV_LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(PYTHON_LIBS) \
-	$(TARGET).o conversion.o -o $(TARGET).so
+	$(OPENCV_LDFLAGS) $(BOOST_LIBS) $(PYTHON_LIBS) \
+	$(TARGET).o conversion.o $(OPENCV_LIBS) -o $(TARGET).so $(PYTHON_LIBS) $(BOOST_LIBS)
 
 $(TARGET).o: $(TARGET).cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OPENCV_INCLUDES) $(PYTHON_INCLUDES) \
