@@ -48,6 +48,17 @@ Boost::Python.
 from Python.
 
 
+Dependencies
+------------
+
+To build this package you will need
+
+- python-dev
+- python-numpy
+- libopencv-dev
+- libboost-all-dev
+
+
 Building and testing
 ---------------------
 
