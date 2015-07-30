@@ -1,10 +1,7 @@
 import unittest
 import numpy as np
 
-try:
-    import examples
-except ImportError:
-    raise ImportError('Could not import the examples module. Did you run make?')
+import examples
 
 
 class TestExamples(unittest.TestCase):
