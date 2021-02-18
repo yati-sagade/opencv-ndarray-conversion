@@ -4,7 +4,7 @@
  * inside modules/python/src2 folder.
  */
 
-static int init()
+static void init()
 {
     import_array();
 }
@@ -120,7 +120,7 @@ NumpyAllocator g_numpyAllocator;
 
 NDArrayConverter::NDArrayConverter() { init(); }
 
-int NDArrayConverter::init()
+void NDArrayConverter::init()
 {
     import_array();
 }
